@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+
+    <title>Gerar link para Whatsapp</title>
+  </head>
+  <body>
+    <h1>Gerador de Link para Whatsapp</h1>
+
+    <div class="container">
+      <div class="row" id="request">
+        <div class="col-12">
+          <div class="form-group">
+            <label for="numero" class="form-label"
+              >Informe o Número do Celular:</label
+            >
+            <input type="text" class="form-control" id="numero" />
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group">
+            <label for="mensagem" class="form-label">Mensagem:</label>
+            <input type="text" class="form-control" id="mensagem" />
+          </div>
+        </div>
+        <div class="col-12">
+          <a href="javascript:void(0)" class="btn btn-success btn-lg" id="btn"
+            >Gerar Link para WhatsApp</a
+          >
+        </div>
+      </div>
+
+      <div class="row fade" id="response">
+        <div class="col-12">
+          <div class="form-group">
+            <label for="numeroresponse" class="form-label"
+              >Link gerado com sucesso</label
+            >
+            <a href="" id="link" target="_blank"></a>
+          </div>
+        </div>
+        <div class="col-12">
+          <a
+            href="javascript:void(0)"
+            class="btn btn-success btn-lg"
+            id="btngerar"
+            >COPIAR LINK PARA ÁREA DE TRABALHO</a
+          >
+          <a
+            href="javascript:void(0)"
+            class="btn btn-success btn-lg"
+            id="btnBack"
+            >CRIAR NOVO LINK</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
+
+    <script type="text/javascript">
+      var gerar = {
+        init: () => {
+          $("#btn").on("click", () => {
+            var numero = $("#numero").val();
+            var mensagem = $("#mensagem").val();
+
+            var link = `https://api.whatsapp.com/send?phone=55${numero}&text=${mensagem}`;
+
+            var linkWeb = `https://web.whatsapp.com/send?phone=55${numero}&text=${mensagem}`;
+
+            $("#link").attr("href", linkWeb).html(link);
+
+            $("#request").hide();
+            $("#response").removeClass("fade");
+          });
+
+          $("#btnBack").on("click", () => {
+            $("#request").show();
+            $("#response").addClass("fade");
+          });
+        },
+      };
+
+      gerar.init();
+    </script>
+  </body>
+</html>
